@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
+import { Button } from 'react-native-elements';
 
 import FirstPage from './src/FirstPage';
 import SecondPage from './src/SecondPage';
@@ -17,7 +18,7 @@ function getRandomNumber() {
 
 class ScreenComponentOne extends React.Component {
   static navigationOptions = {
-    headerTitle: 'First screen',
+    headerTitle: 'La mujersuela debe poner el titulo',
   };
 
   render() {
@@ -30,9 +31,29 @@ class ScreenComponentOne extends React.Component {
           borderColor: 'teal',
         }}>
         <Button
-          title="Go to two"
+          buttonStyle={{
+            backgroundColor: "black",
+            width: 280,
+            height: 45,
+            borderColor: "transparent",
+            borderWidth: 0,
+            borderRadius: 5
+          }}          
+          title="Go to First Screen For Data Capture"
           onPress={() => this.props.navigation.navigate('RouteNameTwo')}
         />
+        <Button      
+          buttonStyle={{
+            backgroundColor: "rgba(92, 99,216, 1)",
+            width: 280,
+            height: 45,
+            borderColor: "transparent",
+            borderWidth: 0,
+            borderRadius: 5
+          }}          
+          title="Go to Second Screen For Data Capture"
+          onPress={() => this.props.navigation.navigate('RouteNameThree')}
+        />        
       </View>
     );
   }

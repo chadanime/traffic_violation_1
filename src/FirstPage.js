@@ -43,14 +43,14 @@ export default class FirstPage extends Component<Props> {
     this.scroll.scrollToFocusedInput(reactNode)
   }
 
-static navigationOptions = {
-title: "     Notification of Traffic Violation",
-headerTintColor: '#FFFFFF',
-headerStyle: {
-backgroundColor: 'black',
-},
+  static navigationOptions = {
+  title: "     Notification of Traffic Violation",
+  headerTintColor: '#FFFFFF',
+  headerStyle: {
+  backgroundColor: 'black',
+  },
 
-}//end of navigationOption
+  }//end of navigationOption
 
   render() {
     return (
