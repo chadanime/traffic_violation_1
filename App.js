@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import { Button } from 'react-native-elements';
+import { Button, CheckBox } from 'react-native-elements';
 
 import FirstPage from './src/FirstPage';
 import SecondPage from './src/SecondPage';
@@ -29,7 +29,7 @@ class ScreenComponentOne extends React.Component {
           justifyContent: 'center',
           borderWidth: 25,
           borderColor: 'teal',
-        }}>
+        }}>  
         <Button
           buttonStyle={{
             backgroundColor: "black",
@@ -41,7 +41,7 @@ class ScreenComponentOne extends React.Component {
           }}          
           title="Go to First Screen For Data Capture"
           onPress={() => this.props.navigation.navigate('RouteNameTwo')}
-        />
+        />            
         <Button      
           buttonStyle={{
             backgroundColor: "rgba(92, 99,216, 1)",

@@ -6,10 +6,12 @@
  * @flow
  */
 
+
 import React, {Component} from 'react';
 import { StackNavigator } from 'react-navigation';
 import {Platform, StyleSheet, Text, View, TextInput} from 'react-native';
-import { CheckBox } from 'react-native-elements'
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+
 
 
 const instructions = Platform.select({
@@ -19,6 +21,18 @@ const instructions = Platform.select({
 });
 
 type Props = {};
+
+const items = [{
+  id: 'Personal',
+  name: 'Personal Vehicle',
+}, {
+  id: 'Commercial',
+  name: 'Commercial (10,001 or more)',
+}, {
+  id: 'Other',
+  name: 'Other',
+}];  
+
 export default class SecondPage extends Component<Props> {
   constructor(props) {
     super(props);
@@ -33,7 +47,10 @@ export default class SecondPage extends Component<Props> {
     this.state = { text_date: ' '};
     this.state = { text_citation: ' '};
     
-    
+    this.state = {
+      selectedItems: [],
+    }
+
     
     
 
@@ -51,21 +68,27 @@ export default class SecondPage extends Component<Props> {
   },
 
   }//end of navigationOption
-
+  onSelectedItemsChange = (selectedItems) => {
+    this.setState({ selectedItems });
+  }
   render() {
+    const { selectedItems } = this.state;
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 8, backgroundColor: 'white'}}>          
-          <Text style={styles.instructions}>{instructions}</Text>
-<View>
-<CheckBox
-  left
-  title='Click Here to Remove This Item'
-  checkedIcon='black' 
-  checkedColor='red'
-  checked={this.state.checked}
-/>
-</View>
+          <Text style={styles.instructions}>{instructions}</Text>  
+          <View style={{backgroundColor: 'green'}}>      
+          <SectionedMultiSelect
+            items={items} 
+            uniqueKey='id'          
+            selectText='Vehicle Operated (check one):'
+            showDropDowns={true}
+            readOnlyHeadings={false}
+            single={true}          
+            onSelectedItemsChange={this.onSelectedItemsChange}          
+            selectedItems={this.state.selectedItems}
+          />          
+          </View>
 
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Driver's Address   </Text>
