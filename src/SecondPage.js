@@ -9,9 +9,9 @@ import {
   TouchableHighlight,
   RecyclerViewBackedScrollView,
   ListView,
-  Platform,
+  Platform,  
 } from 'react-native';
-
+import { Button} from 'react-native-elements';
 import {KeyboardAwareScrollView, KeyboardAwareListView} from 'react-native-keyboard-aware-scrollview'
 
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
@@ -51,6 +51,13 @@ export default class SecondPage extends Component<Props> {
     this.state = { text_date: ' '};
     this.state = { text_citation: ' '};
 
+    this.state = { text_description: ' ' };
+    this.state = { text_location: ' '};    
+    this.state = { text_ofensestate: ' '};
+    this.state = { text_nature: ' '};
+    this.state = { text_disposition: ' '};
+    this.state = { text_Tdate: ' '};     
+
     this.state = {listToggle: false, dataSource: ds.cloneWithRows(this._genRows({}))};
     this.state = {
       selectedItems: [],
@@ -61,7 +68,7 @@ export default class SecondPage extends Component<Props> {
     title: "     Notification of Traffic Violation",
     headerTintColor: '#FFFFFF',
     headerStyle: {
-      backgroundColor: 'black',
+      backgroundColor: '#fe001a',
     },
   }//end of navigationOption
 
@@ -165,7 +172,7 @@ export default class SecondPage extends Component<Props> {
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>City  </Text>
             <TextInput
-              style={styles.textInput}
+              style={styles.textInputSmall}
               placeholder="City Here"
               multiline = {false}
               maxLength = {15}
@@ -173,7 +180,7 @@ export default class SecondPage extends Component<Props> {
             />              
             <Text style={styles.instructionsInput}> State  </Text>
             <TextInput
-              style={styles.textInput}
+              style={styles.textInputSmall}
               placeholder="State"
               multiline = {false}
               maxLength = {2}
@@ -235,29 +242,116 @@ export default class SecondPage extends Component<Props> {
               placeholder="Type Citation Number Here"
               multiline = {false}
               maxLength = {10}
-              onChangeText={(text_date) => this.setState({text_citation})}
+              onChangeText={(text_citation) => this.setState({text_citation})}
             />         
           </View> 
      
 
+          <View style={styles.containerMulti}>
+            <SectionedMultiSelect
+              items={items} 
+              uniqueKey='id'          
+              selectText='Vehicle Operated (check one):'
+              showDropDowns={true}
+              readOnlyHeadings={false}
+              single={true}          
+              onSelectedItemsChange={this.onSelectedItemsChange}          
+              selectedItems={this.state.selectedItems}
+            />                    
+          </View> 
 
-          <SectionedMultiSelect
-            items={items} 
-            uniqueKey='id'          
-            selectText='Vehicle Operated (check one):'
-            showDropDowns={true}
-            readOnlyHeadings={false}
-            single={true}          
-            onSelectedItemsChange={this.onSelectedItemsChange}          
-            selectedItems={this.state.selectedItems}
-          />                    
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.instructionsInput}>Please Describe   </Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Description Here"
+              maxLength = {60}
+              onChangeText={(text_description) => this.setState({text_description})}
+            />         
+          </View> 
+          <View>
+            <Text style={styles.instructionsInput2}>Location of Offense (City/Town/County)  </Text>
+            <TextInput
+              style={styles.textInput2}
+
+              placeholder="Location of Offense Here"
+              multiline = {false}
+              maxLength = {30}
+              onChangeText={(text_location) => this.setState({text_location})}
+            />         
+          </View>    
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.instructionsInput}>State  </Text>
+            <TextInput
+              style={styles.textInputSmall}
+              placeholder="State Here"
+              multiline = {false}
+              maxLength = {2}
+              onChangeText={(text_ofensestate) => this.setState({text_ofensestate})}
+            />                          
+        </View>     
+        <View style={{ flexDirection: 'row'}}>
+          <Text style={styles.instructionsInput}>Nature of Violation   </Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Type Nature of Violation Here"
+            multiline = {false}
+            maxLength = {30}
+            onChangeText={(text_nature) => this.setState({text_nature})}
+          />         
+        </View>
+        <View>
+          <Text style={styles.instructionsInput}>Disposition of Case (bail forfeiture, conviction with fine, loss of license, etc.)  </Text>                
+          <TextInput
+            style={styles.textInput2}
+            placeholder="Type Information Here"
+            multiline = {false}
+            maxLength = {60}
+            onChangeText={(text_disposition) => this.setState({text_disposition})}
+          />          
+        </View>
+
+        <View>           
+          <Text style={styles.instructionsInput}>Driver’s Signature:  </Text>
+          <Button
+            title='Press To Write Driver’s Signature'
+            buttonStyle={{
+              backgroundColor: "black",
+              width: 280,
+              height: 45,
+              borderColor: "transparent",
+              borderWidth: 0,
+              borderRadius: 5,
+              marginBottom: 20,
+            }} 
+          />                                                 
+          <Text style={styles.instructionsInput}>Supervisor Signature:  </Text>
+          <Button              
+            title="Press To Write Supervisor Signature"
+            buttonStyle={{
+              backgroundColor: "black",
+              width: 280,
+              height: 45,
+              borderColor: "transparent",
+              borderWidth: 0,
+              borderRadius: 5,
+              marginBottom: 20,
+            }} 
+          />                                                
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.instructionsInput}>Today’s Date:  </Text>
+            <TextInput
+              style={styles.textInput}             
+              placeholder="Type Today’s Date Here"
+              multiline = {false}
+              maxLength = {10}
+              onChangeText={(text_Tdate) => this.setState({text_Tdate})}
+            />         
+          </View>              
+        </View> 
 
 
-          <TextInput style={styles.textInput} keyboardType="email-address" placeholder={'Email'} ref={(r) => { this._emailTI = r; }}
-                     returnKeyType={'next'} onSubmitEditing={(event) => this._msgTI.focus()}/>
-          <TextInput style={styles.textInput} placeholder={'Message'} ref={(r) => { this._msgTI = r; }} returnKeyType={'next'}
-                     onSubmitEditing={(event) => this._notesTI.focus()}/>
-          <TextInput style={styles.textInput} placeholder={'Notes'} ref={(r) => { this._notesTI = r; }} returnKeyType={'go'}/>
+
         </KeyboardAwareScrollView>
       </View>
     );
@@ -274,10 +368,19 @@ export default class SecondPage extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
+  containerMulti: {
+    flex: 1,
+    backgroundColor: '#fe001a',  
+    borderWidth: 15,
+    borderColor: 'white',
+    borderRadius: 100/2,
+    color: 'white',
+  },  
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',  
+    backgroundColor: 'white',  
     borderWidth: 15,
+    borderColor: 'white',
   },
   instructions: {
     textAlign: 'left',
@@ -287,9 +390,15 @@ const styles = StyleSheet.create({
   instructionsInput: {    
     fontWeight: 'bold',
     textAlign: 'left',
-    color: 'black',
-    margin: 5,
+    color: 'black',    
     height: 40,
+    marginTop: 15,
+  },   
+  instructionsInput2: {    
+    fontWeight: 'bold',
+    textAlign: 'left',
+    color: 'black',    
+    height: 25,
     marginTop: 15,
   },   
   mainTitle: {
@@ -297,17 +406,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center'
   },
+  textInputSmall: {
+    height: 40,
+    width: 80,        
+  },  
   textInput: {
     height: 40,
-    width: 180,    
-    margin: 5,
-    paddingLeft: 10,
-    fontSize: 12,
-    lineHeight: 40,
-    backgroundColor: 'white',
-    borderWidth: 0,
-    borderRadius: 4
+    width: 220,    
   },
+  textInput2: {
+    height: 40,
+    width: 320, 
+    marginBottom: 20
+  },  
   topButton: {
     alignItems: 'center',
     marginBottom: 5
