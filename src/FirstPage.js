@@ -7,12 +7,13 @@
  */
 
 import React, {Component} from 'react';
-import {
-  createStackNavigator,
-} from 'react-navigation';
-import {Platform, StyleSheet, Text, View, TextInput} from 'react-native';
+import {createStackNavigator} from 'react-navigation';
+import {ReactNative, Platform, StyleSheet, Text, View, TextInput} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+
 const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  ios: 'Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day.',
   android:
     'Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day.',
 });
@@ -31,16 +32,11 @@ export default class FirstPage extends Component<Props> {
     this.state = { text_licenseState: ' '};
     this.state = { text_date: ' '};
     this.state = { text_citation: ' '};
-    
-    
-    
-    
-
   }  
 
-  _scrollToInput (reactNode: any) {
-    // Add a 'scroll' ref to your ScrollView
-    this.scroll.scrollToFocusedInput(reactNode)
+  onFocus(e) {
+    const node = ReactNative.findNodeHandle(e.target)
+    this.refs.scroll.scrollToFocusedInput(node)
   }
 
   static navigationOptions = {
@@ -54,8 +50,11 @@ export default class FirstPage extends Component<Props> {
 
   render() {
     return (
+     <KeyboardAwareScrollView
+        style={{flex: 1}}
+        >      
       <View style={{flex: 1}}>
-         <View style={{flex: 8, backgroundColor: 'white'}}>          
+         <View style={{flex: 1, backgroundColor: 'white'}}>          
           <Text style={styles.instructions}>{instructions}</Text>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Driver's Full Name   </Text>
@@ -157,7 +156,8 @@ export default class FirstPage extends Component<Props> {
 
 
         </View>   
-      </View>      
+      </View>  
+     </KeyboardAwareScrollView>      
     );
   }
 }
