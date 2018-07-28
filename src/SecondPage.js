@@ -15,6 +15,8 @@ import { Button} from 'react-native-elements';
 import {KeyboardAwareScrollView, KeyboardAwareListView} from 'react-native-keyboard-aware-scrollview'
 
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 const instructions = Platform.select({
@@ -106,20 +108,7 @@ export default class SecondPage extends Component<Props> {
   _renderKeyboardAwareListView() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight style={styles.topButton}
-                            activeOpacity={0.9}
-                            underlayColor="#FF00FF"
-                            onPress={() => this.setState({listToggle: !this.state.listToggle})}
-        >
-          <Text>Switch to ScrollView</Text>
-        </TouchableHighlight>
-        <KeyboardAwareListView keyboardDismissMode="interactive"
-                               keyboardShouldPersistTaps={"always"}
-                               dataSource={this.state.dataSource}
-                               renderRow={this._renderRow}
-                               renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
-                               renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
-        />
+
       </View>
     );
   }
@@ -127,19 +116,13 @@ export default class SecondPage extends Component<Props> {
   _renderKeyboardAwareScrollView() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight style={styles.topButton}
-                            activeOpacity={0.9}
-                            underlayColor="#FF00FF"
-                            onPress={() => this.setState({listToggle: !this.state.listToggle})}
-        >
-          <Text>Switch to ListView</Text>
-        </TouchableHighlight>
         <KeyboardAwareScrollView keyboardDismissMode="interactive"
                                  keyboardShouldPersistTaps={"always"}
                                  getTextInputRefs={() => {
                                    return [this._firstNameTI, this._lastNameTI, this._countryTI, this._stateTI, this._addrTI, this._emailTI, this._msgTI, this._notesTI];
                                  }}
         >
+
           <Text style={styles.instructions}>{instructions}</Text>  
 
           <View style={{flex: 1, flexDirection: 'row'}}>
@@ -249,11 +232,13 @@ export default class SecondPage extends Component<Props> {
 
           <View style={styles.containerMulti}>
             <SectionedMultiSelect
+              style={styles.contanerStyle}      
               items={items} 
-              uniqueKey='id'          
-              selectText='Vehicle Operated (check one):'
+              uniqueKey='id'                
+              searchPlaceholderText='Please Choose Only One'
+              selectText='    Vehicle Operated (check one):'
               showDropDowns={true}
-              readOnlyHeadings={false}
+              readOnlyHeadings={false}              
               single={true}          
               onSelectedItemsChange={this.onSelectedItemsChange}          
               selectedItems={this.state.selectedItems}
@@ -414,6 +399,11 @@ const styles = StyleSheet.create({
     height: 40,
     width: 220,    
   },
+  contanerStyle: {
+    height: 40,
+    width: 220,
+    textAlign: 'center',    
+  },  
   textInput2: {
     height: 40,
     width: 320, 
