@@ -1,10 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, TextInput } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Button, CheckBox } from 'react-native-elements';
 
-import FirstPage from './src/FirstPage';
-import SecondPage from './src/SecondPage';
+import FormList from './src/FormList';
 
 export default class App extends React.Component {
   render() {
@@ -18,42 +17,61 @@ function getRandomNumber() {
 
 class ScreenComponentOne extends React.Component {
   static navigationOptions = {
-    headerTitle: 'La mujersuela debe poner el titulo',
+    headerTitle: 'Employee Info',
   };
 
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          borderWidth: 25,
-          borderColor: 'teal',
-        }}>  
+      <View style={styles.container}>
+        <View style={styles.userInfo}>
+          <Text style={styles.white}>Full Name</Text>
+          <TextInput style={styles.input}
+            placeholder='Daniel Melchor'
+            placeholderTextColor="white"
+            />
+        </View>
+        <View style={styles.userInfo}>
+          <Text style={styles.white}>Adress</Text>
+          <TextInput style={styles.input}
+            placeholder='Av. Evergay #41 Sunset Boulevard'
+            placeholderTextColor="white"
+            />
+        </View>
+        <View style={styles.userInfo}>
+          <Text style={styles.white}>Social Security Number (SSN)</Text>
+          <TextInput style={styles.input}
+            placeholder='721-07-4426'
+            placeholderTextColor="white"
+            />
+        </View>
+        <View style={styles.userInfo}>
+          <Text style={styles.white}>Department</Text>
+          <TextInput style={styles.input}
+            placeholder='Home and Bed'
+            placeholderTextColor="white"
+            />
+        </View>
+        <View style={styles.userInfo}>
+          <Text style={styles.white}>Start Date</Text>
+          <TextInput style={styles.input}
+            placeholder='05/30/1998'
+            placeholderTextColor="white"
+            />
+        </View>
         <Button
           buttonStyle={{
-            backgroundColor: "black",
+            backgroundColor: '#7f8c8d',
             width: 280,
             height: 45,
             borderColor: "transparent",
             borderWidth: 0,
-            borderRadius: 5
-          }}          
-          title="Go to First Screen For Data Capture"
-          onPress={() => this.props.navigation.navigate('RouteNameTwo')}
-        />            
-        <Button      
-          buttonStyle={{
-            backgroundColor: "rgba(92, 99,216, 1)",
-            width: 280,
-            height: 45,
-            borderColor: "transparent",
-            borderWidth: 0,
-            borderRadius: 5
-          }}          
-          title="Go to Second Screen For Data Capture"
-          onPress={() => this.props.navigation.navigate('RouteNameThree')}
-        />        
+            borderRadius: 5,
+            marginTop: 70,
+            alignSelf: 'center'
+          }}
+          title="Go to Form List"
+          onPress={() => this.props.navigation.navigate('FormList')}
+        />
       </View>
     );
   }
@@ -62,11 +80,36 @@ class ScreenComponentOne extends React.Component {
 const MyNavigator = createStackNavigator(
   {
     RouteNameOne: ScreenComponentOne,
-    RouteNameTwo: FirstPage,
-    RouteNameThree: SecondPage,
+    FormList: FormList
   },
   {
     // headerTransitionPreset: 'uikit',
     // mode: 'modal',
   }
 );
+
+const styles =  StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#2c3e50',
+    padding: 10
+  },
+  userInfo: {
+    flexDirection: 'row'
+  },
+  input: {
+    flex: 1,
+    editable: 'false',
+    color: 'white'
+  },
+  white: {
+    color: 'white',
+  },
+  title: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 30,
+    textAlign: 'center'
+  }
+});
