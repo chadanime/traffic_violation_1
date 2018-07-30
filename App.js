@@ -83,6 +83,7 @@ const MyNavigator = createStackNavigator(
     FormList: FormList
   },
   {
+    headerMode: 'none'
     // headerTransitionPreset: 'uikit',
     // mode: 'modal',
   }
@@ -100,7 +101,6 @@ const styles =  StyleSheet.create({
   },
   input: {
     flex: 1,
-    editable: 'false',
     color: 'white'
   },
   white: {
