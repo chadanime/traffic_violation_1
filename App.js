@@ -1,9 +1,10 @@
 import React from 'react';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import { Button, CheckBox } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
 import FormList from './src/FormList';
+import SecondPage from './src/SecondPage';
 
 export default class App extends React.Component {
   render() {
@@ -18,6 +19,11 @@ function getRandomNumber() {
 class ScreenComponentOne extends React.Component {
   static navigationOptions = {
     headerTitle: 'Employee Info',
+    headerTitleStyle: {
+      flex: 1,
+      alignSelf: 'center',
+      textAlign: 'center'
+    }
   };
 
   render() {
@@ -80,7 +86,8 @@ class ScreenComponentOne extends React.Component {
 const MyNavigator = createStackNavigator(
   {
     RouteNameOne: ScreenComponentOne,
-    FormList: FormList
+    FormList: FormList,
+    Form: SecondPage
   },
   {
     headerMode: 'none'

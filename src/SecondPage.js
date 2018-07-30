@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
 import {
-  AppRegistry,
   StyleSheet,
-  ScrollView,
   TextInput,
   Text,
   View,
   TouchableHighlight,
-  RecyclerViewBackedScrollView,
   ListView,
-  Platform,  
+  Platform,
 } from 'react-native';
-import { Button} from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import {KeyboardAwareScrollView, KeyboardAwareListView} from 'react-native-keyboard-aware-scrollview'
 
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
@@ -34,7 +31,7 @@ const items = [{
 }, {
   id: 'Other',
   name: 'Other',
-}]; 
+}];
 
 type Props = {};
 
@@ -52,27 +49,30 @@ export default class SecondPage extends Component<Props> {
     this.state = { text_licenseState: ' '};
     this.state = { text_date: ' '};
     this.state = { text_citation: ' '};
-
     this.state = { text_description: ' ' };
-    this.state = { text_location: ' '};    
+    this.state = { text_location: ' '};
     this.state = { text_ofensestate: ' '};
     this.state = { text_nature: ' '};
     this.state = { text_disposition: ' '};
-    this.state = { text_Tdate: ' '};     
-
+    this.state = { text_Tdate: ' '};
     this.state = {listToggle: false, dataSource: ds.cloneWithRows(this._genRows({}))};
     this.state = {
       selectedItems: [],
-    }        
+    }
   }
 
   static navigationOptions = {
-    title: "     Notification of Traffic Violation",
+    headerTitle: 'Notification of Traffic Violation',
     headerTintColor: '#FFFFFF',
     headerStyle: {
-      backgroundColor: '#fe001a',
+      backgroundColor: '#fe001a'
     },
-  }//end of navigationOption
+    headerTitleStyle: {
+      flex: 1,
+      alignSelf: 'center',
+      textAlign: 'center'
+    }
+  }
 
   onSelectedItemsChange = (selectedItems) => {
     this.setState({ selectedItems });
@@ -123,18 +123,17 @@ export default class SecondPage extends Component<Props> {
                                  }}
         >
 
-          <Text style={styles.instructions}>{instructions}</Text>  
+          <Text style={styles.instructions}>{instructions}</Text>
 
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Driver's Full Name   </Text>
-
-            <TextInput               
-                style={styles.textInput}              
+            <TextInput
+                style={styles.textInput}
                 placeholder="Type Driver's Name Here"
                 maxLength = {30}
                 onChangeText={(text_driver) => this.setState({text_driver})}
-                />       
-          </View> 
+                />
+          </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Driver's Address   </Text>
             <TextInput
@@ -143,15 +142,8 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {30}
               onChangeText={(text_address) => this.setState({text_address})}
-            />         
-          </View> 
-
-
-
-
-
-
-
+            />
+          </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>City  </Text>
             <TextInput
@@ -160,7 +152,7 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {15}
               onChangeText={(text_city) => this.setState({text_city})}
-            />              
+            />
             <Text style={styles.instructionsInput}> State  </Text>
             <TextInput
               style={styles.textInputSmall}
@@ -168,7 +160,7 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {2}
               onChangeText={(text_state) => this.setState({text_state})}
-            />  
+            />
             <Text style={styles.instructionsInput}>  ZIP </Text>
             <TextInput
               style={styles.textInput}
@@ -176,8 +168,8 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {5}
               onChangeText={(text_zip) => this.setState({text_zip})}
-            />              
-          </View>  
+            />
+          </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Phone Number   </Text>
             <TextInput
@@ -186,8 +178,8 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {10}
               onChangeText={(text_phone) => this.setState({text_phone})}
-            />         
-          </View>  
+            />
+          </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Driver’s License Number  </Text>
             <TextInput
@@ -196,8 +188,8 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {10}
               onChangeText={(text_license) => this.setState({text_license})}
-            />         
-          </View>   
+            />
+          </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>License’s State  </Text>
             <TextInput
@@ -206,7 +198,7 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {10}
               onChangeText={(text_licenseState) => this.setState({text_licenseState})}
-            />         
+            />
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Date of Violation  </Text>
@@ -216,8 +208,8 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {10}
               onChangeText={(text_date) => this.setState({text_date})}
-            />         
-          </View>    
+            />
+          </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Citation Number  </Text>
             <TextInput
@@ -226,25 +218,22 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {10}
               onChangeText={(text_citation) => this.setState({text_citation})}
-            />         
-          </View> 
-     
-
+            />
+          </View>
           <View style={styles.containerMulti}>
             <SectionedMultiSelect
-              style={styles.contanerStyle}      
-              items={items} 
-              uniqueKey='id'                
+              style={styles.contanerStyle}
+              items={items}
+              uniqueKey='id'
               searchPlaceholderText='Please Choose Only One'
               selectText='    Vehicle Operated (check one):'
               showDropDowns={true}
-              readOnlyHeadings={false}              
-              single={true}          
-              onSelectedItemsChange={this.onSelectedItemsChange}          
+              readOnlyHeadings={false}
+              single={true}
+              onSelectedItemsChange={this.onSelectedItemsChange}
               selectedItems={this.state.selectedItems}
-            />                    
-          </View> 
-
+            />
+          </View>
           <View style={{flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Please Describe   </Text>
             <TextInput
@@ -252,19 +241,18 @@ export default class SecondPage extends Component<Props> {
               placeholder="Description Here"
               maxLength = {60}
               onChangeText={(text_description) => this.setState({text_description})}
-            />         
-          </View> 
+            />
+          </View>
           <View>
             <Text style={styles.instructionsInput2}>Location of Offense (City/Town/County)  </Text>
             <TextInput
               style={styles.textInput2}
-
               placeholder="Location of Offense Here"
               multiline = {false}
               maxLength = {30}
               onChangeText={(text_location) => this.setState({text_location})}
-            />         
-          </View>    
+            />
+          </View>
           <View style={{flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>State  </Text>
             <TextInput
@@ -273,8 +261,8 @@ export default class SecondPage extends Component<Props> {
               multiline = {false}
               maxLength = {2}
               onChangeText={(text_ofensestate) => this.setState({text_ofensestate})}
-            />                          
-        </View>     
+            />
+        </View>
         <View style={{ flexDirection: 'row'}}>
           <Text style={styles.instructionsInput}>Nature of Violation   </Text>
           <TextInput
@@ -283,20 +271,19 @@ export default class SecondPage extends Component<Props> {
             multiline = {false}
             maxLength = {30}
             onChangeText={(text_nature) => this.setState({text_nature})}
-          />         
+          />
         </View>
         <View>
-          <Text style={styles.instructionsInput}>Disposition of Case (bail forfeiture, conviction with fine, loss of license, etc.)  </Text>                
+          <Text style={styles.instructionsInput}>Disposition of Case (bail forfeiture, conviction with fine, loss of license, etc.)  </Text>
           <TextInput
             style={styles.textInput2}
             placeholder="Type Information Here"
             multiline = {false}
             maxLength = {60}
             onChangeText={(text_disposition) => this.setState({text_disposition})}
-          />          
+          />
         </View>
-
-        <View>           
+        <View>
           <Text style={styles.instructionsInput}>Driver’s Signature:  </Text>
           <Button
             title='Press To Write Driver’s Signature'
@@ -308,10 +295,10 @@ export default class SecondPage extends Component<Props> {
               borderWidth: 0,
               borderRadius: 5,
               marginBottom: 20,
-            }} 
-          />                                                 
+            }}
+          />
           <Text style={styles.instructionsInput}>Supervisor Signature:  </Text>
-          <Button              
+          <Button
             title="Press To Write Supervisor Signature"
             buttonStyle={{
               backgroundColor: "black",
@@ -321,22 +308,19 @@ export default class SecondPage extends Component<Props> {
               borderWidth: 0,
               borderRadius: 5,
               marginBottom: 20,
-            }} 
-          />                                                
+            }}
+          />
           <View style={{flexDirection: 'row'}}>
             <Text style={styles.instructionsInput}>Today’s Date:  </Text>
             <TextInput
-              style={styles.textInput}             
+              style={styles.textInput}
               placeholder="Type Today’s Date Here"
               multiline = {false}
               maxLength = {10}
               onChangeText={(text_Tdate) => this.setState({text_Tdate})}
-            />         
-          </View>              
-        </View> 
-
-
-
+            />
+          </View>
+        </View>
         </KeyboardAwareScrollView>
       </View>
     );
@@ -355,15 +339,15 @@ export default class SecondPage extends Component<Props> {
 const styles = StyleSheet.create({
   containerMulti: {
     flex: 1,
-    backgroundColor: '#fe001a',  
+    backgroundColor: '#fe001a',
     borderWidth: 15,
     borderColor: 'white',
     borderRadius: 100/2,
     color: 'white',
-  },  
+  },
   container: {
     flex: 1,
-    backgroundColor: 'white',  
+    backgroundColor: 'white',
     borderWidth: 15,
     borderColor: 'white',
   },
@@ -372,20 +356,20 @@ const styles = StyleSheet.create({
     color: 'black',
     marginBottom: 5,
   },
-  instructionsInput: {    
+  instructionsInput: {
     fontWeight: 'bold',
     textAlign: 'left',
-    color: 'black',    
+    color: 'black',
     height: 40,
     marginTop: 15,
-  },   
-  instructionsInput2: {    
+  },
+  instructionsInput2: {
     fontWeight: 'bold',
     textAlign: 'left',
-    color: 'black',    
+    color: 'black',
     height: 25,
     marginTop: 15,
-  },   
+  },
   mainTitle: {
     fontSize: 20,
     marginTop: 10,
@@ -393,22 +377,22 @@ const styles = StyleSheet.create({
   },
   textInputSmall: {
     height: 40,
-    width: 80,        
-  },  
+    width: 80,
+  },
   textInput: {
     height: 40,
-    width: 220,    
+    width: 220,
   },
   contanerStyle: {
     height: 40,
     width: 220,
-    textAlign: 'center',    
-  },  
+    textAlign: 'center',
+  },
   textInput2: {
     height: 40,
-    width: 320, 
+    width: 320,
     marginBottom: 20
-  },  
+  },
   topButton: {
     alignItems: 'center',
     marginBottom: 5

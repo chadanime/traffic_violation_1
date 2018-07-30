@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
-import { createStackNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
-import { View, StyleSheet, TouchableOpacity, Text} from 'react-native';
-
-import SecondPage from './SecondPage';
+import { StyleSheet, ScrollView } from 'react-native';
 
 export default class FormList extends Component {
-  render() {
-    return <MyNavigator />;
-  }
-}
-
-class ScreenComponentTwo extends React.Component {
   static navigationOptions = {
     headerTitle: 'Form List',
+    headerTitleStyle: {
+      flex: 1,
+      alignSelf: 'center',
+      textAlign: 'center'
+    }
   };
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Button
           buttonStyle={{
             borderColor: "transparent",
@@ -114,40 +110,20 @@ class ScreenComponentTwo extends React.Component {
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
-            marginBottom: 15
+            marginBottom: 40
           }}
           title="Form 10"
           onPress={() => this.props.navigation.navigate('Form')}
         />
-      </View>
+      </ScrollView>
     );
   }
 }
-
-const MyNavigator = createStackNavigator(
-  {
-    Initial: ScreenComponentTwo,
-    Form: SecondPage
-  },
-  {
-    // headerTransitionPreset: 'uikit',
-    // mode: 'modal',
-  }
-);
 
 const styles = StyleSheet.create({
 	container: {
     flex: 1,
     backgroundColor: '#2c3e50',
 		padding: 20
-	},
-	buttonContainer: {
-		backgroundColor: '#7f8c8d',
-		paddingVertical: 25
-	},
-	buttonText: {
-		textAlign: 'center',
-		color: '#FFFFFF',
-		fontWeight: '700'
 	}
 });
