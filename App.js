@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, TextInput } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
 
@@ -39,29 +39,29 @@ class ScreenComponentOne extends React.Component {
             <Text style={styles.instructionsInput}>Start Date</Text>
         </View>
         <View style={{flex: 1, flexDirection: 'column'}}>
-          <TextInput  style={styles.textInput} 
-            placeholder='Mr Brown' 
-            editable={false} selectTextOnFocus={false}           
-            />   
-          <TextInput  style={styles.textInput} 
-            placeholder='1st Street Columbia'   
-            editable={false} selectTextOnFocus={false}         
-            />  
-          <TextInput  style={styles.textInput} 
-            placeholder='721-07-4426'  
-            editable={false} selectTextOnFocus={false}          
-            /> 
-          <TextInput  style={styles.textInput} 
-            placeholder='Home and Bed'      
-            editable={false} selectTextOnFocus={false}      
-            /> 
-          <TextInput  style={styles.textInput} 
-            placeholder='05/30/1998'     
-            editable={false} selectTextOnFocus={false}   
-            />          
-        </View>        
+          <TextInput  style={styles.textInput}
+            placeholder='Mr Brown'
+            editable={false} selectTextOnFocus={false}
+            />
+          <TextInput  style={styles.textInput}
+            placeholder='1st Street Columbia'
+            editable={false} selectTextOnFocus={false}
+            />
+          <TextInput  style={styles.textInput}
+            placeholder='721-07-4426'
+            editable={false} selectTextOnFocus={false}
+            />
+          <TextInput  style={styles.textInput}
+            placeholder='Home and Bed'
+            editable={false} selectTextOnFocus={false}
+            />
+          <TextInput  style={styles.textInput}
+            placeholder='05/30/1998'
+            editable={false} selectTextOnFocus={false}
+            />
+        </View>
     </View>
-   
+
         <Button
           buttonStyle={{
             backgroundColor: '#fe001a',
@@ -88,7 +88,14 @@ const MyNavigator = createStackNavigator(
     Form: SecondPage
   },
   {
-    headerMode: 'none'
+    ...Platform.select({
+            ios: {
+                headerMode: 'none',
+            },
+            android: {
+                headerMode: 'screen',
+            },
+          })
     // headerTransitionPreset: 'uikit',
     // mode: 'modal',
   }
@@ -105,7 +112,7 @@ const styles =  StyleSheet.create({
     flexDirection: 'row'
   },
   input: {
-    flex: 1,    
+    flex: 1,
     color: 'black'
   },
   white: {
@@ -113,17 +120,17 @@ const styles =  StyleSheet.create({
   },
   textInput: {
     height: 40,
-    width: 200,    
+    width: 200,
     marginTop: 13,
     textAlign: 'center',
-  },  
-  instructionsInput: {    
+  },
+  instructionsInput: {
     fontWeight: 'bold',
     textAlign: 'left',
-    color: 'black',    
+    color: 'black',
     height: 40,
     marginTop: 15,
-  },   
+  },
   title: {
     color: 'white',
     fontWeight: 'bold',
