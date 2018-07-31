@@ -19,6 +19,10 @@ function getRandomNumber() {
 class ScreenComponentOne extends React.Component {
   static navigationOptions = {
     headerTitle: 'Employee Info',
+    headerTintColor: '#FFFFFF',
+    headerStyle: {
+      backgroundColor: '#fe001a'
+    },
     headerTitleStyle: {
       flex: 1,
       alignSelf: 'center',
