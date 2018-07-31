@@ -29,44 +29,42 @@ class ScreenComponentOne extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.userInfo}>
-          <Text style={styles.white}>Full Name</Text>
-          <TextInput style={styles.input}
-            placeholder='Daniel Melchor'
-            placeholderTextColor="white"
-            />
+
+   <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+            <Text style={styles.instructionsInput}>Full Name</Text>
+            <Text style={styles.instructionsInput}>Adress</Text>
+            <Text style={styles.instructionsInput}>Social Security Number (SSN)</Text>
+            <Text style={styles.instructionsInput}>Department</Text>
+            <Text style={styles.instructionsInput}>Start Date</Text>
         </View>
-        <View style={styles.userInfo}>
-          <Text style={styles.white}>Adress</Text>
-          <TextInput style={styles.input}
-            placeholder='Av. Evergay #41 Sunset Boulevard'
-            placeholderTextColor="white"
-            />
-        </View>
-        <View style={styles.userInfo}>
-          <Text style={styles.white}>Social Security Number (SSN)</Text>
-          <TextInput style={styles.input}
-            placeholder='721-07-4426'
-            placeholderTextColor="white"
-            />
-        </View>
-        <View style={styles.userInfo}>
-          <Text style={styles.white}>Department</Text>
-          <TextInput style={styles.input}
-            placeholder='Home and Bed'
-            placeholderTextColor="white"
-            />
-        </View>
-        <View style={styles.userInfo}>
-          <Text style={styles.white}>Start Date</Text>
-          <TextInput style={styles.input}
-            placeholder='05/30/1998'
-            placeholderTextColor="white"
-            />
-        </View>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <TextInput  style={styles.textInput} 
+            placeholder='Mr Brown' 
+            editable={false} selectTextOnFocus={false}           
+            />   
+          <TextInput  style={styles.textInput} 
+            placeholder='1st Street Columbia'   
+            editable={false} selectTextOnFocus={false}         
+            />  
+          <TextInput  style={styles.textInput} 
+            placeholder='721-07-4426'  
+            editable={false} selectTextOnFocus={false}          
+            /> 
+          <TextInput  style={styles.textInput} 
+            placeholder='Home and Bed'      
+            editable={false} selectTextOnFocus={false}      
+            /> 
+          <TextInput  style={styles.textInput} 
+            placeholder='05/30/1998'     
+            editable={false} selectTextOnFocus={false}   
+            />          
+        </View>        
+    </View>
+   
         <Button
           buttonStyle={{
-            backgroundColor: '#7f8c8d',
+            backgroundColor: '#fe001a',
             width: 280,
             height: 45,
             borderColor: "transparent",
@@ -100,19 +98,32 @@ const styles =  StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#2c3e50',
+    backgroundColor: 'white',
     padding: 10
   },
   userInfo: {
     flexDirection: 'row'
   },
   input: {
-    flex: 1,
-    color: 'white'
+    flex: 1,    
+    color: 'black'
   },
   white: {
-    color: 'white',
+    color: 'black',
   },
+  textInput: {
+    height: 40,
+    width: 200,    
+    marginTop: 13,
+    textAlign: 'center',
+  },  
+  instructionsInput: {    
+    fontWeight: 'bold',
+    textAlign: 'left',
+    color: 'black',    
+    height: 40,
+    marginTop: 15,
+  },   
   title: {
     color: 'white',
     fontWeight: 'bold',

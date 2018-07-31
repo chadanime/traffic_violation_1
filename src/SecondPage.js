@@ -13,6 +13,7 @@ import {KeyboardAwareScrollView, KeyboardAwareListView} from 'react-native-keybo
 
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { WebView } from 'react-native';
 
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -115,212 +116,279 @@ export default class SecondPage extends Component<Props> {
 
   _renderKeyboardAwareScrollView() {
     return (
-      <View style={styles.container}>
+      <View style={styles.containerFullScreen}>
         <KeyboardAwareScrollView keyboardDismissMode="interactive"
                                  keyboardShouldPersistTaps={"always"}
                                  getTextInputRefs={() => {
                                    return [this._firstNameTI, this._lastNameTI, this._countryTI, this._stateTI, this._addrTI, this._emailTI, this._msgTI, this._notesTI];
                                  }}
-        >
+        >          
+          <WebView
+            source={{ 
+              html: 
+              "<style>p{text-align:justify;font-size:14;font-family:Open Sans}</style>"+
+              "<p>" + 
+              "Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day"+
+              "</p>"
+            }}
+            style={{height:90, width: this.screenWidth, paddingBottom: 0, padding: 0, backgroundColor: 'transparent'}}
+          /> 
+          <View style={styles.container}>
+            <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
+              <View style={{flex: 1, flexDirection: 'column'}}>
+                <Text style={styles.instructionsInput}>Driver's Full Name   </Text>
+                <Text style={styles.instructionsInput}>Driver's Address   </Text>
+              </View>
+              <View style={{flex: 1, flexDirection: 'column'}}>
+                <TextInput               
+                    style={styles.textInput}              
+                    placeholder="Type Driver's Name Here"
+                    maxLength = {30}
+                    onChangeText={(text_driver) => this.setState({text_driver})}
+                    />             
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="Type Driver's Address Here"
+                  multiline = {false}
+                  maxLength = {30}
+                  onChangeText={(text_address) => this.setState({text_address})}
+                />  
+              </View>            
+            </View>
+            <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
+              <View style={{flex: 1, flexDirection: 'column'}}>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                  <Text style={styles.instructionsInput}>City  </Text>
+                  <TextInput
+                    style={styles.textInputSmall}
+                    placeholder="City Here"
+                    multiline = {false}
+                    maxLength = {15}
+                    onChangeText={(text_city) => this.setState({text_city})}
+                  />              
+                </View>                       
+              </View>
+              <View style={{flex: 1, flexDirection: 'column'}}>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                  <View style={{width: 100, flexDirection: 'row'}}>
+                    <Text style={styles.instructionsInput}>State</Text>
+                  </View>     
+                  <View style={{flex: 1, flexDirection: 'row'}}>         
+                    <TextInput
+                      style={styles.textInputSmall}
+                      placeholder="State Here"
+                      multiline = {false}
+                      maxLength = {2}
+                      onChangeText={(text_state) => this.setState({text_state})}
+                    />             
+                  </View>
+                </View> 
+                <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+                </View>             
+              </View>
+            </View>
+            <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
+              <View style={{flex: 1, flexDirection: 'column'}}>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                 <Text style={styles.instructionsInput}>ZIP   </Text>
+                  <TextInput
+                    style={styles.textInputSmall}
+                    placeholder="ZIP Here"
+                    multiline = {false}
+                    maxLength = {5}
+                    onChangeText={(text_zip) => this.setState({text_zip})}
+                  />                
+                </View>
+              </View> 
+              <View style={{flex: 1, flexDirection: 'column'}}>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                  <Text style={styles.instructionsInput}>Phone Number  </Text>
+                  <TextInput
+                    style={styles.textInputSmall}
+                    placeholder="Phone Here"
+                    multiline = {false}
+                    maxLength = {10}
+                    onChangeText={(text_phone) => this.setState({text_phone})}
+                  />                 
+                </View>
+              </View>                     
+            </View>
 
-          <Text style={styles.instructions}>{instructions}</Text>
+            <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
+              <View style={{flex: 1, flexDirection: 'column'}}>
+                <Text style={styles.instructionsInput}>Driver’s License Number  </Text>
+                <Text style={styles.instructionsInput}>License’s State  </Text>
+              </View>
+              <View style={{flex: 1, flexDirection: 'column'}}> 
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="Type License Number Here"
+                  multiline = {false}
+                  maxLength = {10}
+                  onChangeText={(text_license) => this.setState({text_license})}
+                />   
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="Type License’s State Here"
+                  multiline = {false}
+                  maxLength = {10}
+                  onChangeText={(text_licenseState) => this.setState({text_licenseState})}
+                />                                                  
+              </View>
+            </View> 
+            <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
+              <View style={{flex: 1, flexDirection: 'column'}}>
+                <Text style={styles.instructionsInput}>Date of Violation  </Text>
+                <Text style={styles.instructionsInput}>Citation Number  </Text>            
+              </View>  
+              <View style={{flex: 1, flexDirection: 'column'}}> 
+                <TextInput
+                  style={styles.textInputNOTOP}
+                  placeholder="Type Violations’s Date Here"
+                  multiline = {false}
+                  maxLength = {10}
+                  onChangeText={(text_date) => this.setState({text_date})}
+                />      
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="Type Citation Number Here"
+                  multiline = {false}
+                  maxLength = {10}
+                  onChangeText={(text_citation) => this.setState({text_citation})}
+                />             
+              </View> 
+            </View>
 
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>Driver's Full Name   </Text>
-            <TextInput
+            <View style={{flex: 1, flexDirection: 'column'}}> 
+            </View>
+
+
+            <View style={styles.containerMulti}>
+              <SectionedMultiSelect                  
+                items={items} 
+                uniqueKey='id'                
+                searchPlaceholderText='Please Choose Only One'
+                selectText='    Vehicle Operated (check one):'
+                showDropDowns={true}
+                readOnlyHeadings={false}              
+                single={true}          
+                colors={{text:'black', 
+                         primary:'white', 
+                         selectToggleTextColor:'white', 
+                         searchPlaceholderTextColor:'gray',
+                       }}
+                onSelectedItemsChange={this.onSelectedItemsChange}          
+                selectedItems={this.state.selectedItems}
+              />                    
+            </View> 
+
+            <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
+             <View style={{flex: 1, flexDirection: 'column'}}>
+              <Text style={styles.instructionsInput}>Please Describe   </Text>
+              <Text style={styles.instructionsInput}>Location of Offense (City/Town/County)  </Text>
+             </View>
+             <View style={{flex: 1, flexDirection: 'column'}}>
+              <TextInput
                 style={styles.textInput}
-                placeholder="Type Driver's Name Here"
+                placeholder="Description Here"
+                maxLength = {60}
+                onChangeText={(text_description) => this.setState({text_description})}
+              />   
+              <TextInput
+                style={styles.textInput}
+                placeholder="Location of Offense Here"
+                multiline = {false}
                 maxLength = {30}
-                onChangeText={(text_driver) => this.setState({text_driver})}
-                />
-          </View>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>Driver's Address   </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Type Driver's Address Here"
-              multiline = {false}
-              maxLength = {30}
-              onChangeText={(text_address) => this.setState({text_address})}
-            />
-          </View>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>City  </Text>
-            <TextInput
-              style={styles.textInputSmall}
-              placeholder="City Here"
-              multiline = {false}
-              maxLength = {15}
-              onChangeText={(text_city) => this.setState({text_city})}
-            />
-            <Text style={styles.instructionsInput}> State  </Text>
-            <TextInput
-              style={styles.textInputSmall}
-              placeholder="State"
-              multiline = {false}
-              maxLength = {2}
-              onChangeText={(text_state) => this.setState({text_state})}
-            />
-            <Text style={styles.instructionsInput}>  ZIP </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="ZIP Here"
-              multiline = {false}
-              maxLength = {5}
-              onChangeText={(text_zip) => this.setState({text_zip})}
-            />
-          </View>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>Phone Number   </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Type Phone Number Here"
-              multiline = {false}
-              maxLength = {10}
-              onChangeText={(text_phone) => this.setState({text_phone})}
-            />
-          </View>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>Driver’s License Number  </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Type License Number Here"
-              multiline = {false}
-              maxLength = {10}
-              onChangeText={(text_license) => this.setState({text_license})}
-            />
-          </View>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>License’s State  </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Type License’s State Here"
-              multiline = {false}
-              maxLength = {10}
-              onChangeText={(text_licenseState) => this.setState({text_licenseState})}
-            />
-          </View>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>Date of Violation  </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Type Violations’s Date Here"
-              multiline = {false}
-              maxLength = {10}
-              onChangeText={(text_date) => this.setState({text_date})}
-            />
-          </View>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>Citation Number  </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Type Citation Number Here"
-              multiline = {false}
-              maxLength = {10}
-              onChangeText={(text_citation) => this.setState({text_citation})}
-            />
-          </View>
-          <View style={styles.containerMulti}>
-            <SectionedMultiSelect
-              style={styles.contanerStyle}
-              items={items}
-              uniqueKey='id'
-              searchPlaceholderText='Please Choose Only One'
-              selectText='    Vehicle Operated (check one):'
-              showDropDowns={true}
-              readOnlyHeadings={false}
-              single={true}
-              onSelectedItemsChange={this.onSelectedItemsChange}
-              selectedItems={this.state.selectedItems}
-            />
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>Please Describe   </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Description Here"
-              maxLength = {60}
-              onChangeText={(text_description) => this.setState({text_description})}
-            />
-          </View>
+                onChangeText={(text_location) => this.setState({text_location})}
+              />                                           
+             </View>
+              
+            </View>   
+     
+            <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
+             <View style={{flex: 1, flexDirection: 'column'}}>
+              <Text style={styles.instructionsInput}>State  </Text>
+              <Text style={styles.instructionsInput}>Nature of Violation   </Text>           
+             </View>
+             <View style={{flex: 1, flexDirection: 'column'}}>
+              <TextInput
+                style={styles.textInput}
+                placeholder="State Here"
+                multiline = {false}
+                maxLength = {2}
+                onChangeText={(text_ofensestate) => this.setState({text_ofensestate})}
+              />   
+              <TextInput
+                style={styles.textInput}
+                placeholder="Type Nature of Violation Here"
+                multiline = {false}
+                maxLength = {30}
+                onChangeText={(text_nature) => this.setState({text_nature})}
+              />             
+             </View>                      
+            </View>
           <View>
-            <Text style={styles.instructionsInput2}>Location of Offense (City/Town/County)  </Text>
+            <Text style={styles.instructionsInput}>Disposition of Case (bail forfeiture, conviction with fine, loss of license, etc.)  </Text>                
             <TextInput
               style={styles.textInput2}
-              placeholder="Location of Offense Here"
+              placeholder="Type Information Here"
               multiline = {false}
-              maxLength = {30}
-              onChangeText={(text_location) => this.setState({text_location})}
-            />
+              maxLength = {60}
+              onChangeText={(text_disposition) => this.setState({text_disposition})}
+            />          
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>State  </Text>
-            <TextInput
-              style={styles.textInputSmall}
-              placeholder="State Here"
-              multiline = {false}
-              maxLength = {2}
-              onChangeText={(text_ofensestate) => this.setState({text_ofensestate})}
-            />
-        </View>
-        <View style={{ flexDirection: 'row'}}>
-          <Text style={styles.instructionsInput}>Nature of Violation   </Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Type Nature of Violation Here"
-            multiline = {false}
-            maxLength = {30}
-            onChangeText={(text_nature) => this.setState({text_nature})}
-          />
-        </View>
-        <View>
-          <Text style={styles.instructionsInput}>Disposition of Case (bail forfeiture, conviction with fine, loss of license, etc.)  </Text>
-          <TextInput
-            style={styles.textInput2}
-            placeholder="Type Information Here"
-            multiline = {false}
-            maxLength = {60}
-            onChangeText={(text_disposition) => this.setState({text_disposition})}
-          />
-        </View>
-        <View>
-          <Text style={styles.instructionsInput}>Driver’s Signature:  </Text>
-          <Button
-            title='Press To Write Driver’s Signature'
-            buttonStyle={{
-              backgroundColor: "black",
-              width: 280,
-              height: 45,
-              borderColor: "transparent",
-              borderWidth: 0,
-              borderRadius: 5,
-              marginBottom: 20,
-            }}
-          />
-          <Text style={styles.instructionsInput}>Supervisor Signature:  </Text>
-          <Button
-            title="Press To Write Supervisor Signature"
-            buttonStyle={{
-              backgroundColor: "black",
-              width: 280,
-              height: 45,
-              borderColor: "transparent",
-              borderWidth: 0,
-              borderRadius: 5,
-              marginBottom: 20,
-            }}
-          />
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.instructionsInput}>Today’s Date:  </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Type Today’s Date Here"
-              multiline = {false}
-              maxLength = {10}
-              onChangeText={(text_Tdate) => this.setState({text_Tdate})}
-            />
-          </View>
-        </View>
+
+          <View>           
+            <Text style={styles.instructionsInput}>Driver’s Signature:  </Text>
+            <Button
+              title='Press To Write Driver’s Signature'
+              buttonStyle={{
+                backgroundColor: "#fe001a",
+                width: 280,
+                height: 45,
+                borderColor: "transparent",
+                borderWidth: 0,
+                borderRadius: 5,
+                marginBottom: 20,
+              }} 
+            />                                                 
+            <Text style={styles.instructionsInput}>Supervisor Signature:  </Text>
+            <Button              
+              title="Press To Write Supervisor Signature"
+              buttonStyle={{
+                backgroundColor: "#fe001a",
+                width: 280,
+                height: 45,
+                borderColor: "transparent",
+                borderWidth: 0,
+                borderRadius: 5,
+                marginBottom: 20,
+              }} 
+            />    
+
+            <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
+             <View style={{flex: 1, flexDirection: 'column'}}>
+              <Text style={styles.instructionsInput}>Today’s Date:  </Text>
+             </View>                                          
+             <View style={{flex: 1, flexDirection: 'column'}}>
+              <TextInput
+                style={styles.textInput}             
+                placeholder="Type Today’s Date Here"
+                multiline = {false}
+                maxLength = {10}
+                onChangeText={(text_Tdate) => this.setState({text_Tdate})}
+              />             
+             </View>            
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              
+         
+            </View>      
+          </View>        
+        </View> 
+
+
+
         </KeyboardAwareScrollView>
       </View>
     );
@@ -339,17 +407,22 @@ export default class SecondPage extends Component<Props> {
 const styles = StyleSheet.create({
   containerMulti: {
     flex: 1,
-    backgroundColor: '#fe001a',
-    borderWidth: 15,
+    backgroundColor: '#fe001a',      
+    borderColor: 'white',  
+    height: 40,  
+    width:330,
+  },  
+  containerFullScreen: {
+    flex: 1,
+    backgroundColor: 'white',  
+    borderWidth: 5,
     borderColor: 'white',
-    borderRadius: 100/2,
-    color: 'white',
-  },
+  },  
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    borderWidth: 15,
+    backgroundColor: 'white',      
     borderColor: 'white',
+    borderWidth: 10,
   },
   instructions: {
     textAlign: 'left',
@@ -377,12 +450,22 @@ const styles = StyleSheet.create({
   },
   textInputSmall: {
     height: 40,
-    width: 80,
-  },
+    width: 100,    
+    marginTop: 8,
+    textAlign: 'center',    
+  },  
   textInput: {
     height: 40,
-    width: 220,
+    width: 200,    
+    marginTop: 8,
+    textAlign: 'center',
   },
+  textInputNOTOP: {
+    height: 40,
+    width: 200,   
+    marginTop: 4, 
+    textAlign: 'center',
+  },  
   contanerStyle: {
     height: 40,
     width: 220,
@@ -390,7 +473,8 @@ const styles = StyleSheet.create({
   },
   textInput2: {
     height: 40,
-    width: 320,
+    width: 340, 
+    textAlign: 'center',
     marginBottom: 20
   },
   topButton: {

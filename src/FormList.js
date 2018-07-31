@@ -17,16 +17,18 @@ export default class FormList extends Component {
       <ScrollView style={styles.container}>
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
             marginBottom: 15
           }}
-          title="Form 1"
+          title="Nofitication Of Traffic Violation"
           onPress={() => this.props.navigation.navigate('Form')}
         />
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
@@ -37,6 +39,7 @@ export default class FormList extends Component {
         />
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
@@ -47,6 +50,7 @@ export default class FormList extends Component {
         />
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
@@ -57,6 +61,7 @@ export default class FormList extends Component {
         />
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
@@ -67,6 +72,7 @@ export default class FormList extends Component {
         />
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
@@ -77,6 +83,7 @@ export default class FormList extends Component {
         />
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
@@ -87,6 +94,7 @@ export default class FormList extends Component {
         />
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
@@ -97,6 +105,7 @@ export default class FormList extends Component {
         />
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',          
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
@@ -107,6 +116,7 @@ export default class FormList extends Component {
         />
         <Button
           buttonStyle={{
+            backgroundColor: '#fe001a',          
             borderColor: "transparent",
             borderWidth: 0,
             borderRadius: 5,
@@ -123,7 +133,7 @@ export default class FormList extends Component {
 const styles = StyleSheet.create({
 	container: {
     flex: 1,
-    backgroundColor: '#2c3e50',
+    backgroundColor: '#FFFFFF',
 		padding: 20
 	}
 });
