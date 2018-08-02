@@ -92,14 +92,7 @@ const MyNavigator = createStackNavigator(
     Form: SecondPage
   },
   {
-    ...Platform.select({
-            ios: {
-                headerMode: 'none',
-            },
-            android: {
-                headerMode: 'screen',
-            },
-          })
+    headerMode: 'screen',
     // headerTransitionPreset: 'uikit',
     // mode: 'modal',
   }

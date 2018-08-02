@@ -17,11 +17,7 @@ import { WebView } from 'react-native';
 
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-const instructions = Platform.select({
-  ios: 'Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day.',
-  android:
-    'Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day.',
-});
+const instructions = 'Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day.';
 
 const items = [{
   id: 'Personal',
@@ -126,12 +122,12 @@ export default class SecondPage extends Component<Props> {
           <WebView
             source={{ 
               html: 
-              "<style>p{text-align:justify;font-size:14;font-family:Open Sans}</style>"+
+              "<style>p{text-align:justify;font-size:20;font-family:Open Sans}</style>"+
               "<p>" + 
               "Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day"+
               "</p>"
             }}
-            style={{height:90, width: this.screenWidth, paddingBottom: 0, padding: 0, backgroundColor: 'transparent'}}
+            style={{height:90, width:this.screenWidth, paddingBottom: 0, padding: 0, backgroundColor: 'transparent'}}
           /> 
           <View style={styles.container}>
             <View style={{flex: 1, width: 270, flexDirection: 'row'}}>
@@ -261,7 +257,6 @@ export default class SecondPage extends Component<Props> {
 
             <View style={{flex: 1, flexDirection: 'column'}}> 
             </View>
-
 
             <View style={styles.containerMulti}>
               <SectionedMultiSelect                  
@@ -408,9 +403,16 @@ const styles = StyleSheet.create({
   containerMulti: {
     flex: 1,
     backgroundColor: '#fe001a',      
-    borderColor: 'white',  
-    height: 40,  
-    width:330,
+    borderColor: 'white',
+    ...Platform.select({
+      ios:{
+        //Setting a specifict size makes "selectText" invisible for some reason
+      },
+      android:{
+        height: 40,
+        width: 330,
+      }
+    })
   },  
   containerFullScreen: {
     flex: 1,
