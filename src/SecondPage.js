@@ -120,12 +120,23 @@ export default class SecondPage extends Component<Props> {
                                  }}
         >          
           <WebView
-            source={{ 
-              html: 
-              "<style>p{text-align:justify;font-size:20;font-family:Open Sans}</style>"+
-              "<p>" + 
-              "Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day"+
-              "</p>"
+            source={{
+              ...Platform.select({
+                ios:{
+                  html:
+                  "<style>p{text-align:justify;font-size:24;font-family:Open Sans}</style>"+
+                  "<p>" + 
+                  "Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day"+
+                  "</p>"
+                },
+                android:{
+                  html:
+                  "<style>p{text-align:justify;font-size:14;font-family:Open Sans}</style>"+
+                  "<p>" + 
+                  "Coca-Cola Refreshments requires that all associates who drive company vehicles notify their supervisor of any moving traffic violations/citations, including those that occurred in a personal vehicle, no later than the beginning of the next scheduled work day"+
+                  "</p>"
+                }
+              })
             }}
             style={{height:90, width:this.screenWidth, paddingBottom: 0, padding: 0, backgroundColor: 'transparent'}}
           /> 
